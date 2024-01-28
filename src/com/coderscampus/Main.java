@@ -1,5 +1,7 @@
 package com.coderscampus;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args){
@@ -9,13 +11,25 @@ public class Main {
         FileService fileService = new FileService();
         Student[] students = fileService.getStudentsFromFile();
 
-        String[] studentNames = new String[101];
-
         System.out.println("------This is PRE SORT --------");
-        int i=0;
-        for(Student estudiante : students){
-            System.out.println(studentNames[i]	= estudiante.getStudentName());
-            i++;
+
+        for(Student student : students){
+            System.out.println(student.getStudentID() + " " +  student.getStudentName() + " " + student.getCourse() + student.getGrade());
         }
+
+//here , sort the students by grade, then separate by course into 3 different student course array
+
+        Arrays.sort(students);
+        System.out.println("------This is POST Sort ---- sorted by Descending order by course, then grade----");
+
+        //Now that the array has been sorted in Desc order by Course, then Grade, we can read through it and writ to spec files
+
+
+        for(Student student : students){
+            System.out.println(student.getStudentID() + " " +  student.getStudentName() + " " + student.getCourse() + " " + student.getGrade());
+        }
+
+
+
     }
 }

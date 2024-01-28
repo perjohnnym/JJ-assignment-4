@@ -3,7 +3,7 @@ package com.coderscampus;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.IOException;  
 
 public class FileService {
 
@@ -19,9 +19,13 @@ public class FileService {
 
             while ((line = fileReader.readLine()) != null) {
                 String[] lineData = line.split(",");
+
                 Student student = new Student(lineData[0], lineData[1], lineData[2], lineData[3]);
+
                 students[i] = student;
                 i++;
+
+
             }
             return students;
         } catch (FileNotFoundException e) {

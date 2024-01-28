@@ -2,7 +2,7 @@ package com.coderscampus;
 
 //this is the Students POJO
 
-public class Student {
+public  class Student implements Comparable<Student>{
 
     private String StudentID;
     private String StudentName;
@@ -24,4 +24,14 @@ public class Student {
     public String getCourse(){return Course;}
     public String getGrade(){return Grade;}
 
+    @Override
+    public int compareTo(Student that) {
+    //Descending sort by Course, then Grade
+        if (this.Course.compareTo(that.Course) == 0) {
+            return this.Grade.compareTo(that.Grade);
+        } else {
+            return that.Course.compareTo(this.Course);
+        }
+
+    }
 }
