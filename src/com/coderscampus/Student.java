@@ -25,12 +25,12 @@ public  class Student implements Comparable<Student>{
     public String getGrade(){return Grade;}
 
     @Override
-    public int compareTo(Student that) {
-    //Descending sort by Course, then Grade
-        if (this.Course.compareTo(that.Course) == 0) {
-            return this.Grade.compareTo(that.Grade);
+    public int compareTo(Student OtherStudent) {
+    //Ascending order sort by Course, then Desc by Grade
+        if (this.getCourse().compareTo(OtherStudent.getCourse()) == 0) {
+            return OtherStudent.getGrade().compareTo(this.getGrade());
         } else {
-            return that.Course.compareTo(this.Course);
+            return this.getCourse().compareTo(OtherStudent.getCourse());
         }
 
     }
