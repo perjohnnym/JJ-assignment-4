@@ -4,17 +4,23 @@ import java.io.*;
 
 
 public class FileService {
+
+    BufferedReader fileReader;
     BufferedWriter fileWriterCourse1 = null;
+    BufferedWriter fileWriterCourse2 = null;
+    BufferedWriter fileWriterCourse3 = null;
+
 
     public Student[] getStudentsFromFile () {
 
-        BufferedReader fileReader = null;
+
 
         try {
             int i = 0;
-            String line = null;
+
             Student[] students = new Student[100];
             fileReader = new BufferedReader(new FileReader("student-master-list.csv"));
+            String line;
 
             while ((line = fileReader.readLine()) != null) {
                 if (line.contains("Student ID")) continue;
@@ -44,28 +50,32 @@ public class FileService {
 
     }
 
-    public void writeStudentsToFileCourse1(){
-        //System.out.println("this record belongs to file course1.csv");
-        try {
-            BufferedWriter fileWriterCourse1 = new BufferedWriter(new FileWriter("course1.csv"));
-              System.out.println("you've reached the filewriter");
-              fileWriterCourse1.write("this is COMP SCI\n");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    //the method below should be called ONLY once
+
+
+    public void writeStudentsToFiles(Student[] students) throws IOException {
+
+
+       fileWriterCourse1 = new BufferedWriter(new FileWriter("course1.csv"));
+        fileWriterCourse2 = new BufferedWriter(new FileWriter("course2.csv"));
+        fileWriterCourse3 = new BufferedWriter(new FileWriter("course3.csv"));
+
+        for(Student student : students){
+            if (student.getCourse().contains("COMPSCI") ) {
+                fileWriterCourse1.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
+            }else if (student.getCourse().contains("STAT")) {
+                fileWriterCourse2.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
+            }else if (student.getCourse().contains("APMTH")){
+                fileWriterCourse3.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
+            }
+
+
         }
+        fileWriterCourse1.close();
+        fileWriterCourse2.close();
+        fileWriterCourse3.close();
+    }
 
 
     }
 
-    public void initializeFileCourse1(){
-
-        System.out.println("Initializing file COURSE1.CSV");
-
-/*        try {
-            BufferedWriter fileWriterCourse1 = new BufferedWriter(new FileWriter("course1.csv"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
-
-    }
-}
