@@ -17,7 +17,7 @@ public class Main {
             System.out.println(student.getStudentID() + " " +  student.getStudentName() + " " + student.getCourse() + " " + student.getGrade());
         }
 
-//here , sort the students by grade, then separate by course into 3 different student course array
+//Here, we sort the students by grade, then separate by course into 3 different student course array
         Arrays.sort(students);
 
         fileService.writeStudentsToFiles(students);
