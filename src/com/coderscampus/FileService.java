@@ -50,19 +50,19 @@ public class FileService {
 
     }
 
-    //the method below should be called ONLY once
-
-
     public void writeStudentsToFiles(Student[] students) throws IOException {
 
 
        fileWriterCourse1 = new BufferedWriter(new FileWriter("course1.csv"));
-        fileWriterCourse2 = new BufferedWriter(new FileWriter("course2.csv"));
-        fileWriterCourse3 = new BufferedWriter(new FileWriter("course3.csv"));
+       fileWriterCourse2 = new BufferedWriter(new FileWriter("course2.csv"));
+       fileWriterCourse3 = new BufferedWriter(new FileWriter("course3.csv"));
+
+       writeHeaderRecs();
 
         for(Student student : students){
             if (student.getCourse().contains("COMPSCI") ) {
                 fileWriterCourse1.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
+
             }else if (student.getCourse().contains("STAT")) {
                 fileWriterCourse2.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
             }else if (student.getCourse().contains("APMTH")){
@@ -70,12 +70,21 @@ public class FileService {
             }
 
 
-        }
+        } // end for-statement
+
+
         fileWriterCourse1.close();
         fileWriterCourse2.close();
         fileWriterCourse3.close();
     }
 
+    private void writeHeaderRecs() throws IOException {
+
+        fileWriterCourse1.write("Student ID, " + "Student Name, " + "Course, " + "Grade" + "\n");
+        fileWriterCourse2.write("Student ID, " + "Student Name, " + "Course, " + "Grade" + "\n");
+        fileWriterCourse3.write("Student ID, " + "Student Name, " + "Course, " + "Grade" + "\n");
 
     }
+
+}
 
