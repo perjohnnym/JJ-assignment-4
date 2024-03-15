@@ -13,8 +13,6 @@ public class FileService {
 
     public Student[] getStudentsFromFile () {
 
-
-
         try {
             int i = 0;
 
@@ -52,7 +50,6 @@ public class FileService {
 
     public void writeStudentsToFiles(Student[] students) throws IOException {
 
-
        fileWriterCourse1 = new BufferedWriter(new FileWriter("course1.csv"));
        fileWriterCourse2 = new BufferedWriter(new FileWriter("course2.csv"));
        fileWriterCourse3 = new BufferedWriter(new FileWriter("course3.csv"));
@@ -62,7 +59,6 @@ public class FileService {
         for(Student student : students){
             if (student.getCourse().contains("COMPSCI") ) {
                 fileWriterCourse1.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
-
             }else if (student.getCourse().contains("STAT")) {
                 fileWriterCourse2.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
             }else if (student.getCourse().contains("APMTH")){
@@ -71,7 +67,6 @@ public class FileService {
 
 
         } // end for-statement
-
 
         fileWriterCourse1.close();
         fileWriterCourse2.close();

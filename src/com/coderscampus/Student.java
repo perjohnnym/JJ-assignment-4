@@ -26,12 +26,16 @@ public  class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student OtherStudent) {
-    //Ascending order sort by Course, then Desc by Grade
+    //Segregate by Course Name (excluding the course level number), then order by Grade Desc
+
+
         if (this.getCourse().substring(0, 7).compareTo(OtherStudent.getCourse().substring(0, 7)) == 0) {
             return OtherStudent.getGrade().compareTo(this.getGrade());
-        } else {
-            return this.getCourse().compareTo(OtherStudent.getCourse());
+        } else if (this.getCourse().substring(0, 4).compareTo(OtherStudent.getCourse().substring(0, 4)) == 0){
+            return OtherStudent.getGrade().compareTo(this.getGrade());
+        } else if (this.getCourse().substring(0, 5).compareTo(OtherStudent.getCourse().substring(0, 5)) == 0){
+            return OtherStudent.getGrade().compareTo(this.getGrade());
         }
-
+        return this.getCourse().compareTo(OtherStudent.getCourse());
     }
 }
